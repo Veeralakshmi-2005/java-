@@ -19,7 +19,7 @@ public class Student {
     private UUID id;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user ;
 
     @OneToOne
     @JoinColumn(name = "college_id")
