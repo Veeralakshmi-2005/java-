@@ -4,7 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class CollegeDetailsRequestDto {
+public class CollegeDetailsDto {
+
+    private String collegeId;
+
+    @NotBlank(message = "User ID is required")
+    private String userId;
+
+    // Common fields
     @NotBlank(message = "College name is required")
     private String collegeName;
 
@@ -14,9 +21,8 @@ public class CollegeDetailsRequestDto {
     @NotBlank(message = "University is required")
     private String university;
 
-    @NotBlank(message = "Teacher Identification Number is required")
-    private String teacherIdentificationNumber;
-
-    @NotBlank(message = "College registration number is required")
-    private String collegeRegistrationNo;
+    // Conditional fields
+    private String teacherIdentificationNumber; // for PROFESSOR
+    private String collegeRegistrationNo;       // for INSTITUTION
 }
+

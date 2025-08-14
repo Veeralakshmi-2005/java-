@@ -1,49 +1,45 @@
 package Groupstudy.example.Groupstudy.Entity;
 
+import Groupstudy.example.Groupstudy.Enum.UserCategory;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import java.time.LocalDateTime;
 
-import java.util.UUID;
-
-@Entity
-@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
+    @Column(nullable = false)
     private String fullName;
-    private String emailId;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @Column(unique = true)
     private String mobileNumber;
+
+    @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private UserCategory userCategory;
 
-    private String role;
+    private boolean isDeleted = false;
 
-    private boolean verified;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Otp otp;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Student student;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Professor professor;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Institution institution;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private CollegeDetails collegeDetails;
+    private LocalDateTime created = LocalDateTime.now();
+    private LocalDateTime modified = LocalDateTime.now();
 }
+
+
+
+
 
 
 

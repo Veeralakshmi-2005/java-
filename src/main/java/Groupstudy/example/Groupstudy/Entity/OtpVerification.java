@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "college_details")
-public class CollegeDetails {
+@Table(name = "otp_verification")
+public class OtpVerification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,11 +19,9 @@ public class CollegeDetails {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    private String collegeName;
-    private String location;
-    private String university;
-    private String teacherIdentificationNumber;
-    private String collegeRegistrationNo;
+    private String otp;
+
+    private boolean verified = false;
 
     private boolean isDeleted = false;
 
